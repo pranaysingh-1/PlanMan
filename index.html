@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<!-- login + registration page when reaching website -->
+
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
@@ -7,12 +10,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+
+<!-- title -->
 <div style="text-align:center;">
   <h1>PlanMan</h1>
 </div>
+
+<!-- description -->
 <div style="text-align:center;">
   <p>Breaking down large projects/tasks into small manageable assignments that helps track progress</p>
 </div>
+
+<!--making the form that you can slide between -->
 <div class="wrapper">
   <div class="form-container">
     <div class="slide-controls">
@@ -23,7 +32,11 @@
       <div class="slider-tab"></div>
     </div>
     <div class="form-inner">
+
+      <!-- submitting form leads to main landing page from login -->
       <form action='landing.html' class="login">
+
+
         <div class="field">
           <input type="text" placeholder="Email Address" required>
         </div>
@@ -42,6 +55,8 @@
           Not a member? <a href="">Sign up now</a>
         </div>
       </form>
+
+      <!-- signup form leading to landing page -->
       <form action="landing.html" class="signup">
         <div class="field">
           <input type="text" placeholder="Email Address" required>
@@ -60,6 +75,8 @@
     </div>
   </div>
 </div>
+
+<!-- formatting -->
 <script>
   const loginText = document.querySelector(".title-text .login");
   const loginForm = document.querySelector("form.login");
