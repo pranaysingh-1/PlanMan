@@ -19,7 +19,7 @@
     <!-- Greeting -->
     <section class="greeting">
         <h1 class="title">
-            What's up, <input type="text" id="name" placeholder="Name here" />
+            Welcome to PlanMan, <input type="text" id="name" placeholder="Name here" />
         </h1>
     </section>
 
@@ -32,7 +32,8 @@
                     type="text"
                     placeholder="e.g. create PlanMan frontend"
                     name="content"
-                    id="content" />
+                    id="content_todo" 
+                    onsubmit="return emptyInput()" method="post" required/>
 
             <h4>Pick a category</h4>
             <div class="options">
@@ -61,6 +62,8 @@
 </main>
 
 <!-- JS -->
-<script src="scripts.js"></script>
+<script type="text/javascript" language="javascript" src="landing.js"></script>
+<script type="text/javascript" language="javascript" src="script.js"></script>
+
 </body>
 </html>
