@@ -8,17 +8,17 @@ Storage.prototype.getObject = function(key) {
 }
 
 window.addEventListener('load', () => {
-  todos = JSON.parse(localStorage.getItem('todos')) || []
-  const nameInput = document.querySelector('#name')
+  todos = JSON.parse(localStorage.getItem(sessionStorage.getItem('user_email') + '_todos')) || []
+  const nameInput = document.querySelector('#login_email')
   const newTodoForm = document.querySelector('#new-todo-form')
-  const username = localStorage.getItem('username') || ''
+  const username = sessionStorage.getItem("user_email") || ''
 
   if (nameInput)
   {
     nameInput.value = username
 
     nameInput.addEventListener('change', (e) => {
-      localStorage.setItem('username', e.target.value)
+      sessionStorage.setItem('user_email', e.target.value)
     })
   }
 
@@ -36,7 +36,7 @@ window.addEventListener('load', () => {
 
       todos.push(todo)
 
-      localStorage.setItem('todos', JSON.stringify(todos))
+      localStorage.setItem(sessionStorage.getItem('user_email') + '_todos', JSON.stringify(todos))
 
       // Reset the form
       e.target.reset()
@@ -63,11 +63,10 @@ function signup() {
   accounts[document.getElementById('signup_email').value] = {}
   account = accounts[document.getElementById('signup_email').value]
   account['password'] = document.getElementById('signup_pass').value
-  localStorage.setItem(
-    'login_email',
+  sessionStorage.setItem(
+    'user_email',
     document.getElementById('signup_email').value
   )
-  alert(JSON.stringify(accounts))
   localStorage.setItem('accounts', JSON.stringify(accounts))
 }
 
@@ -75,13 +74,12 @@ function store(e) {
   accounts = localStorage.getObject('accounts')
   var email = document.getElementById('login_email').value
   if (
-    accounts.hasOwnProperty(email) //&&
-    //Object.entries(accounts[email])[password] ==
-    // document.getElementById('login_password')
+    accounts.hasOwnProperty(email) &&
+    accounts[email]["password"] === document.getElementById('login_password').value
   ) {
-    localStorage.setItem(
-      'login_email',
-      document.getElementById('login_email').value
+    sessionStorage.setItem(
+      'user_email',
+      email
     )
     return true
   } else {
@@ -113,7 +111,6 @@ function valPas() {
 function incorectPas(){
   if (document.getElementById('signup_pass').value != "" && document.getElementById('signup_confirm_pass').value != "") 
   {
-    alert("Your response is submitted");
   } else {
     alert("Please fill all the fields");
   }
