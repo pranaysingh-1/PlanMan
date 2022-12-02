@@ -58,16 +58,26 @@ function formVal() {
 var pw = document.getElementById('pw')
 var name = document.getElementById('name')
 
-function signup() {
+function signup(e) {
   accounts = localStorage.getObject('accounts')
-  accounts[document.getElementById('signup_email').value] = {}
-  account = accounts[document.getElementById('signup_email').value]
+  var email = document.getElementById('signup_email').value
+  if (accounts.hasOwnProperty(email))
+  {
+    e.preventDefault()
+    document.getElementById('lblError').style.color = 'red';
+    document.getElementById('lblError').innerHTML
+      = 'That email is already in use';
+    return false
+  }
+  accounts[email] = {}
+  account = accounts[email]
   account['password'] = document.getElementById('signup_pass').value
   sessionStorage.setItem(
     'user_email',
     document.getElementById('signup_email').value
   )
   localStorage.setItem('accounts', JSON.stringify(accounts))
+  return true
 }
 
 function store(e) {
@@ -84,7 +94,9 @@ function store(e) {
     return true
   } else {
     e.preventDefault()
-    alert('Invalid email or password')
+        document.getElementById('incorrect_email_alert').style.color = 'red';
+    document.getElementById('incorrect_email_alert').innerHTML
+      = 'Invalid username or password';
     return false
   }
 }
